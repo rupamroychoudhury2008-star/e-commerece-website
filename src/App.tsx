@@ -122,6 +122,7 @@ function Header({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
             <a
               key={item}
               href="#"
+              onClick={(e) => e.preventDefault()}
               className="font-['Playfair_Display'] text-sm font-medium text-amber-100/80 transition-colors hover:text-[#D4AF37]"
             >
               {item}
@@ -130,6 +131,7 @@ function Header({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
         </nav>
 
         <button
+          aria-label="Open cart"
           onClick={onCartClick}
           className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 transition-all hover:bg-[#D4AF37]/20"
         >
@@ -612,7 +614,7 @@ function CartModal({
       <div className="relative max-h-[90vh] w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl">
         <div className="flex items-center justify-between border-b border-gray-200 bg-gradient-to-r from-[#1a0a1a] to-[#2d1a2d] p-6">
           <h2 className="font-['Cinzel'] text-xl font-bold text-[#D4AF37]">Your Royal Collection</h2>
-          <button onClick={onClose} className="rounded-full p-2 text-amber-100 hover:bg-white/10">
+          <button aria-label="Close cart" onClick={onClose} className="rounded-full p-2 text-amber-100 hover:bg-white/10">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -647,6 +649,7 @@ function CartModal({
                     </p>
                   </div>
                   <button
+                    aria-label={`Remove ${item.product.name} from cart`}
                     onClick={() => onRemove(index)}
                     className="self-start rounded-full p-1 text-gray-400 hover:bg-red-50 hover:text-red-500"
                   >
@@ -698,7 +701,7 @@ function Footer() {
             <ul className="space-y-2 text-sm text-amber-100/60">
               {["Our Collection", "Customize Shawl", "About Us", "Contact"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="hover:text-[#D4AF37]">{item}</a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-[#D4AF37]">{item}</a>
                 </li>
               ))}
             </ul>
@@ -709,7 +712,7 @@ function Footer() {
             <ul className="space-y-2 text-sm text-amber-100/60">
               {["Custom Embroidery", "Gift Wrapping", "International Shipping", "Authentication"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="hover:text-[#D4AF37]">{item}</a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-[#D4AF37]">{item}</a>
                 </li>
               ))}
             </ul>
@@ -724,7 +727,7 @@ function Footer() {
                 placeholder="Your email"
                 className="flex-1 rounded-full border border-[#D4AF37]/30 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-amber-100/40 focus:border-[#D4AF37] focus:outline-none"
               />
-              <button className="rounded-full bg-[#D4AF37] px-4 py-2 text-[#1a0a1a]">
+              <button aria-label="Subscribe to newsletter" className="rounded-full bg-[#D4AF37] px-4 py-2 text-[#1a0a1a]">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -734,12 +737,13 @@ function Footer() {
         </div>
         
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#D4AF37]/20 pt-8 md:flex-row">
-          <p className="text-sm text-amber-100/40">© 2024 Rajshree. All rights reserved.</p>
+          <p className="text-sm text-amber-100/40">© {new Date().getFullYear()} Rajshree. All rights reserved.</p>
           <div className="flex gap-4">
             {["Instagram", "Facebook", "Pinterest"].map((social) => (
               <a
                 key={social}
                 href="#"
+                onClick={(e) => e.preventDefault()}
                 className="text-sm text-amber-100/60 hover:text-[#D4AF37]"
               >
                 {social}
