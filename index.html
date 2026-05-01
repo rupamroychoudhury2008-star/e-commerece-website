@@ -1,13 +1,89 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rajshree - Royal Indian Shawls</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+import React from 'react';
+
+export default function App() {
+  const collection = [
+    { name: "The Pashmina Royale", price: "₹45,000", img: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=2000&auto=format&fit=crop" },
+    { name: "Midnight Zardozi", price: "₹62,000", img: "https://images.unsplash.com/photo-1610189044342-d6fcaf93d393?q=80&w=2000&auto=format&fit=crop" },
+    { name: "Kashmiri Heritage", price: "₹38,000", img: "https://images.unsplash.com/photo-1528318269466-69d911b30521?q=80&w=2000&auto=format&fit=crop" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-poppins selection:bg-gold-500 selection:text-white scroll-smooth">
+      {/* Absolute Navbar */}
+      <nav className="absolute top-0 w-full px-8 py-6 flex justify-between items-center z-50 bg-gradient-to-b from-zinc-950/80 to-transparent">
+        <h1 className="font-cinzel text-2xl md:text-3xl tracking-[0.2em] font-bold text-white uppercase">Rajshree</h1>
+        <div className="hidden md:flex space-x-12 text-xs uppercase tracking-[0.2em] text-zinc-400 font-medium">
+          <a href="#collection" className="hover:text-gold-400 transition-colors duration-300">Collection</a>
+          <a href="#heritage" className="hover:text-gold-400 transition-colors duration-300">Heritage</a>
+          <a href="#bespoke" className="hover:text-gold-400 transition-colors duration-300">Bespoke</a>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <main className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605001011153-27a3c3164993?q=80&w=2070')] bg-cover bg-center opacity-30 scale-105 animate-[pulse_20s_ease-in-out_infinite]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-zinc-950/10 to-zinc-950"></div>
+        <div className="relative z-10 text-center px-4 flex flex-col items-center mt-20">
+          <p className="font-poppins text-gold-400 tracking-[0.4em] uppercase text-xs mb-6 drop-shadow-md">The Royal Heritage</p>
+          <h2 className="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold mb-8 text-white tracking-tight">Woven <span className="italic font-light text-gold-400">Elegance</span></h2>
+          <p className="font-poppins font-light text-zinc-300 max-w-xl mx-auto mb-12 text-sm leading-relaxed">Discover the timeless artistry of handcrafted Indian shawls. Woven by master artisans, where every thread tells a story of undisputed royalty.</p>
+          <button className="group relative px-10 py-4 bg-transparent overflow-hidden border border-gold-400 text-gold-400 hover:text-zinc-950 transition-colors duration-500 shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+            <div className="absolute inset-0 w-0 bg-gold-400 transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
+            <span className="font-cinzel font-semibold tracking-[0.2em] uppercase text-xs">Explore Collection</span>
+          </button>
+        </div>
+      </main>
+
+      {/* Curated Collection Section */}
+      <section id="collection" className="py-32 px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col items-center mb-20">
+          <h3 className="font-playfair text-4xl md:text-5xl text-white mb-4">Curated Masterpieces</h3>
+          <div className="w-12 h-[1px] bg-gold-400"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {collection.map((item, index) => (
+            <div key={index} className="group cursor-pointer flex flex-col">
+              <div className="relative aspect-[3/4] overflow-hidden mb-6">
+                <div className="absolute inset-0 bg-zinc-900 animate-pulse -z-10"></div>
+                <img src={item.img} alt={item.name} className="object-cover w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out grayscale-[20%]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+              </div>
+              <div className="flex justify-between items-end border-b border-zinc-800 pb-4 group-hover:border-gold-400 transition-colors duration-500">
+                <div>
+                  <h4 className="font-cinzel text-lg text-white mb-1 tracking-wide">{item.name}</h4>
+                  <p className="text-zinc-500 font-poppins text-xs uppercase tracking-widest">Handwoven Pure Pashmina</p>
+                </div>
+                <p className="font-poppins text-gold-400 text-sm tracking-wider">{item.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Heritage Section */}
+      <section id="heritage" className="py-32 px-8 bg-zinc-900/20 border-y border-zinc-900/50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1 relative h-[500px] w-full">
+             <img src="https://images.unsplash.com/photo-1601055904859-9941a5477dae?q=80&w=2000" className="object-cover w-full h-full grayscale-[50%] brightness-75" alt="Artisan weaving" />
+             <div className="absolute -bottom-6 -right-6 w-full h-full border border-gold-400/20 -z-10"></div>
+          </div>
+          <div className="order-1 lg:order-2 space-y-8">
+            <h3 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-white leading-tight">A Century of <br/><span className="italic text-gold-400">Craftsmanship</span></h3>
+            <p className="text-zinc-400 font-poppins text-sm leading-relaxed">Established in the heart of the valley, Rajshree has been the custodian of royal weaving traditions for over three generations. Our master artisans employ techniques passed down through centuries, turning raw, ethereal threads into canvases of history.</p>
+            <p className="text-zinc-400 font-poppins text-sm leading-relaxed">Each shawl requires months of painstaking precision, ensuring that the legacy of Indian royalty is seamlessly woven into every inch.</p>
+            <div className="pt-4">
+              <button className="text-gold-400 font-cinzel text-xs uppercase tracking-[0.2em] border-b border-gold-400 pb-1 hover:text-white hover:border-white transition-colors duration-300">Discover Our Story</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 text-center flex flex-col items-center justify-center">
+        <h1 className="font-cinzel text-xl tracking-[0.3em] font-bold text-zinc-700 uppercase mb-4">Rajshree</h1>
+        <p className="text-zinc-600 text-xs font-poppins tracking-widest uppercase">© 2026 All Rights Reserved.</p>
+      </footer>
+    </div>
+  );
+}
